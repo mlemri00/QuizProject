@@ -1,13 +1,40 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page session="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>JSP - Hello World</title>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<div class="login-container">
+    <h1>REGISTRO</h1>
+    <form action="">
+        <div class="input-group">
+            <label for="email">CORREO ELECTRÓNICO</label>
+            <input type="email" id="email" placeholder="tu@correo.com">
+        </div>
+        <div class="input-group">
+            <label for="firstName">NOMBRE</label>
+            <input type="text" id="firstName">
+        </div>
+        <div class="input-group">
+            <label for="lastName">APELLIDOS</label>
+            <input type="text" id="lastName">
+        </div>
+
+        <div class="input-group">
+            <label for="password">CONTRASEÑA</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+
+        <button type="submit">REGISTRAR</button>
+    </form>
+</div>
+
+
+
 </body>
 </html>

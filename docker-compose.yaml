@@ -19,13 +19,13 @@ services:
     volumes:
       - ./db:/var/lib/mysql
 
-  phpmyadmin:
+  phpmyadminQuiz:
     image: phpmyadmin:latest
     container_name: phpmyadmin
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: dbQuiz
+      MYSQL_ROOT_PASSWORD: root8081
     ports:
       - "8081:80"
     depends_on:
-      - db
+      - dbQuiz
