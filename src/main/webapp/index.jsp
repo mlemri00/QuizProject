@@ -11,23 +11,23 @@
 <body>
 <div class="login-container">
     <h1>REGISTRO</h1>
-    <form action="">
+    <form action="register">
         <div class="input-group">
             <label for="email">CORREO ELECTRÓNICO</label>
-            <input type="email" id="email" placeholder="tu@correo.com">
+            <input type="email" id="email" name="email" placeholder="tu@correo.com">
         </div>
         <div class="input-group">
             <label for="firstName">NOMBRE</label>
-            <input type="text" id="firstName">
+            <input type="text" id="firstName" name="firstName">
         </div>
         <div class="input-group">
             <label for="lastName">APELLIDOS</label>
-            <input type="text" id="lastName">
+            <input type="text" id="lastName" name="lastName">
         </div>
 
         <div class="input-group">
             <label for="password">CONTRASEÑA</label>
-            <input type="password" id="password" placeholder="••••••••">
+            <input type="password" id="password" name="password" placeholder="••••••••">
         </div>
 
         <button type="submit">REGISTRAR</button>
