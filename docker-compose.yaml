@@ -10,8 +10,8 @@ services:
     image: mysql:8.0
     container_name: mysql_db
     environment:
-      MYSQL_ROOT_PASSWORD: root8081
-      MYSQL_DATABASE: movies
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: quiz
       MYSQL_USER: nom_alumne
       MYSQL_PASSWORD: secret
     ports:
@@ -24,7 +24,7 @@ services:
     container_name: phpmyadmin
     environment:
       PMA_HOST: dbQuiz
-      MYSQL_ROOT_PASSWORD: root8081
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "8081:80"
     depends_on:

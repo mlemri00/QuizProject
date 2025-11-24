@@ -1,40 +1,16 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@page session="false"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: pedro
+  Date: 24/11/25
+  Time: 10:18
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Create user</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Title</title>
 </head>
 <body>
-<div class="login-container">
-    <h1>REGISTRO</h1>
-    <form action="register">
-        <div class="input-group">
-            <label for="email">CORREO ELECTRÓNICO</label>
-            <input type="email" id="email" name="email" placeholder="tu@correo.com">
-        </div>
-        <div class="input-group">
-            <label for="firstName">NOMBRE</label>
-            <input type="text" id="firstName" name="firstName">
-        </div>
-        <div class="input-group">
-            <label for="lastName">APELLIDOS</label>
-            <input type="text" id="lastName" name="lastName">
-        </div>
-
-        <div class="input-group">
-            <label for="password">CONTRASEÑA</label>
-            <input type="password" id="password" name="password" placeholder="••••••••">
-        </div>
-
-        <button type="submit">REGISTRAR</button>
-    </form>
-</div>
-
-
-
+<h1>si</h1>
 </body>
 </html>
