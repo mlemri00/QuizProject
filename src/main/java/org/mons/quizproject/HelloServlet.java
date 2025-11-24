@@ -4,15 +4,15 @@ import java.io.*;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import org.mons.quizproject.DAO.QuestionGetImpl;
+import org.mons.quizproject.DAO.QuestionDaoApiImpl;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
-    QuestionGetImpl qs;
+    QuestionDaoApiImpl qs;
     public void init() {
 
-         qs = new QuestionGetImpl();
+         qs = new QuestionDaoApiImpl();
         message = "Hello World!";
     }
 

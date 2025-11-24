@@ -8,7 +8,7 @@ import org.mons.quizproject.models.Question;
 
 import java.util.List;
 
-public class QuestionGetImpl {
+public class QuestionDaoApiImpl {
 
     private final String URL = "https://the-trivia-api.com/v2/questions/";
 

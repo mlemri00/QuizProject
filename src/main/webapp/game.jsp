@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pedro
@@ -13,8 +14,12 @@
 <body>
 <h1>¡Quiz game!</h1>
 <form action="quiz" method="post">
-    <input type="hidden" name="type" value="init">
-    <button type="submit">Start</button>
+    <input type="hidden" name="type" value="game">
+    <h2><c:out value="question">${question.getQuestion.getText()}</h2>
+    <div>
+    <button type="submit" name="but"></button>
+    </div>
+
 </form>
 </body>
 </html>
