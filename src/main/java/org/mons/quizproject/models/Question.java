@@ -2,11 +2,12 @@ package org.mons.quizproject.models;
 import lombok.*;
 
 import java.util.List;
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Data
 public class Question {
     private String category;
     private String id;
