@@ -16,10 +16,5 @@ public class QuestionService {
 
     }
 
-    public List<Question>getQuestions(){
-        Client client = ClientBuilder.newClient();
-
-        return client.target("https://the-trivia-api.com/v2/questions").request(MediaType.APPLICATION_JSON).get(new GenericType<>(){});
-    }
 
 }
