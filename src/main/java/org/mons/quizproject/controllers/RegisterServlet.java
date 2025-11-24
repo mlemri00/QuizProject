@@ -6,9 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.graalvm.compiler.core.GraalCompiler;
+
 import org.mons.quizproject.DTO.UserDto;
-import org.mons.quizproject.models.User;
+
 import org.mons.quizproject.service.UserServiceImp;
 
 import java.io.IOException;

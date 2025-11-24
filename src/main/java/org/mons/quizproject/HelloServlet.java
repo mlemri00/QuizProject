@@ -4,14 +4,15 @@ import java.io.*;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.mons.quizproject.DAO.QuestionGetImpl;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
-    QuestionService qs;
+    QuestionGetImpl qs;
     public void init() {
 
-         qs = new QuestionService();
+         qs = new QuestionGetImpl();
         message = "Hello World!";
     }
 
@@ -21,7 +22,7 @@ public class HelloServlet extends HttpServlet {
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html>"+"<body>");
-        out.println("<h1>" + message+qs.getQuestions().get(1).getQuestion() + "</h1>");
+        out.println("<h1>Hello" + qs.getQuestion("hard").get(1).getQuestion() +"</h1>");
         out.println("</body>prprpddrprprppr</html>");
     }
 
