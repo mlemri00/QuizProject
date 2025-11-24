@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1>si</h1>
+<h1>${q.getQuestionTxt}</h1>
 </body>
 </html>
