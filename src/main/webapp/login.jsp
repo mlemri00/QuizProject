@@ -12,23 +12,26 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <style>
-        :root {
-            --pico-font-size: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <main class="container">
     <form action="login" method="POST">
         <input type="hidden" name="__method" value="POST">
 
-        <label for="username">User</label>
-        <input type="text" id="username" name="username">
+        <div class="input-group">
+            <label for="username">User</label>
+            <input type="text" id="username" name="username">
+        </div>
 
-        <label for="passwd">Password</label>
-        <input type="password" id="passwd" name="password">
+
+
+        <div class="input-group">
+            <label for="passwd">Password</label>
+            <input type="password" id="passwd" name="password">
+        </div>
+
+
 
         <p>${error}</p>
 
