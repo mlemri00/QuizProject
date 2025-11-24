@@ -44,6 +44,7 @@ public class LoginServlet  extends HttpServlet {
 
             } else if (service.validateUser(user, password)) {
                 request.getSession(true).setAttribute("username", user.getUsername());
+                request.getSession(false).setMaxInactiveInterval(60);
                 response.sendRedirect("quiz");
 
             }
