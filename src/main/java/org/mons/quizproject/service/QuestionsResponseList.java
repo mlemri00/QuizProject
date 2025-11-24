@@ -1,4 +1,4 @@
-package org.mons.quizproject.services;
+package org.mons.quizproject.service;
 
 public class QuestionsResponseList {
 
