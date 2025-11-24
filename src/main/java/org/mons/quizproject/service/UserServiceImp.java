@@ -41,6 +41,7 @@ public class UserServiceImp {
 
         }
 
+
         return new UserDto(dao.addUser(new User(0L,username, firstName, lastName, hashedPassword)));
 
     }

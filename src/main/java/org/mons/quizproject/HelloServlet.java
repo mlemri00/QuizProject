@@ -4,7 +4,6 @@ import java.io.*;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import org.mons.quizproject.service.QuestionService;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
@@ -23,7 +22,7 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html>"+"<body>");
         out.println("<h1>" + message+qs.getQuestions().get(1).getQuestion() + "</h1>");
-        out.println("</body></html>");
+        out.println("</body>prprpddrprprppr</html>");
     }
 
     public void destroy() {
