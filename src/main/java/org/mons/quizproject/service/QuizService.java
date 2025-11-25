@@ -12,7 +12,7 @@ import java.util.List;
 public class QuizService {
     QuestionDaoApiImpl questionDAO = new QuestionDaoApiImpl();
     QuestionDTO questionDTO;
-
+    List <String> Difficulties= List.of("easy","medium","hard");
 
 
 
