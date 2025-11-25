@@ -14,7 +14,8 @@
 <body>
 <h1>¡Quiz game!</h1>
 
-<h3>${time}</h3>
+<h2 id="timeJ">${time}</h2>
+<h3 id="time"></h3>
 
     <input type="hidden" name="type" value="game">
     <h2>
@@ -33,5 +34,23 @@
     </form>
 
     </div>
+
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded",(e)=>{
+        const num = Number.parseInt(document.querySelector("#timeJ").innerHTML);
+        let countDown = new Date().getTime() + num;
+
+        let x = setInterval(function() {
+            let now = new Date().getTime();
+
+            let distance = countDown - now;
+            let minutes = Math.floor((distance%(1000 *60 *60))/(1000*60));
+            let seconds = Math.floor((distance%(1000 *60)) / 1000);
+
+            document.getElementById("time").innerHTML =  minutes + "m " + seconds + "s ";
+
+        }, 1000);
+    })
+</script>
 </html>
