@@ -1,3 +1,11 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: dbQuiz
+-- Tiempo de generación: 25-11-2025 a las 18:31:24
+-- Versión del servidor: 8.0.44
+-- Versión de PHP: 8.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -14,6 +22,29 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `quiz` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE `quiz`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Partida`
+--
+
+CREATE TABLE `Partida` (
+                           `id` int NOT NULL,
+                           `user_id` int NOT NULL,
+                           `puntuacion` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `Partida`
+--
+
+INSERT INTO `Partida` (`id`, `user_id`, `puntuacion`) VALUES
+                                                          (10, 1, 4),
+                                                          (11, 1, 10),
+                                                          (12, 1, 40),
+                                                          (13, 1, 21),
+                                                          (14, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -42,6 +73,12 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `password`) VA
 --
 
 --
+-- Indices de la tabla `Partida`
+--
+ALTER TABLE `Partida`
+    ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -52,8 +89,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `Partida`
+--
+ALTER TABLE `Partida`
+    MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
     MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
