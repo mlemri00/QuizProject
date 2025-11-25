@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pedro
@@ -13,12 +14,13 @@
 <body>
 
 <c:if test="${juegos != null}">
+    <tr>
     <c:forEach var="juego" items="${juegos}">
-        <tr>
             <td>${juego.username}</td>
             <td>${juego.puntuacion}</td>
-        </tr>
     </c:forEach>
+    </tr>
 </c:if>
+
 </body>
 </html>

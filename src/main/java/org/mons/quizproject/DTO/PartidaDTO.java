@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PartidaDTO {
-    private int id;
-    private int user_id;
+    private long id;
+    private long user_id;
     private int puntuacion;
 }

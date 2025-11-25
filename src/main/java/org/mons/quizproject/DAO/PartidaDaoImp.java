@@ -19,6 +19,10 @@ public class PartidaDaoImp {
     public List<Partida> getBestGames(){
         Query query = em.createQuery("SELECT p FROM Partida p WHERE p.puntuacion = (SELECT MAX(sub.puntuacion) FROM Partida sub WHERE sub.user_id = p.user_id) ORDER BY p.puntuacion DESC", Partida.class);
         query.setMaxResults(10);
+
+        List<Partida> partidas = query.getResultList();
+        System.out.println(partidas.get(0).getPuntuacion());
+
         return query.getResultList();
     }
 

@@ -24,7 +24,9 @@ public class PartidaService {
         Partida partida = new Partida(
                 0,
                 p.getPuntuacion(),
-                p.getUser_id()
+                (int) p.getUser_id()
         );
+
+        partidaDao.addPartida(partida);
     }
 }
