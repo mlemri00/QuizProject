@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.mons.quizproject.DAO.QuestionDaoApiImpl;
 import org.mons.quizproject.DTO.QuestionDTO;
+import org.mons.quizproject.models.Question;
 
 public class QuizService {
     QuestionDaoApiImpl questionDAO = new QuestionDaoApiImpl();
@@ -12,14 +13,13 @@ public class QuizService {
 
 
 
+    public QuestionDTO getQuestionDTO(){
+        Question question = questionDAO.getQuestion("hard").get(0);
 
 
-    public HttpServletRequest setRequestAttributes(HttpServletRequest req){
 
-    return req;
 
     }
-
 
 
 

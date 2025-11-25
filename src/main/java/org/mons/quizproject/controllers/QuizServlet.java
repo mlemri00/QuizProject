@@ -30,11 +30,17 @@ public class QuizServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute();
+
+
         req.getRequestDispatcher("start.jsp").forward(req,resp);
+
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.getParameter("but");
+
+
+
 
     }
 }
