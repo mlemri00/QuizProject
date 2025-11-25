@@ -12,9 +12,8 @@
 </head>
 <body>
 <h1>¡Quiz game!</h1>
-<form action="quiz" method="post">
-    <input type="hidden" name="type" value="init">
-    <button type="submit">Start</button>
-</form>
+
+<a href="quiz">Pulsa</a>
+
 </body>
 </html>

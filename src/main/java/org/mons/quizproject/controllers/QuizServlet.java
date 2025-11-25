@@ -18,23 +18,17 @@ public class QuizServlet extends HttpServlet {
 
     private QuizService service = new QuizService();
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getMethod().equalsIgnoreCase("post")){
 
-        }else{
-            resp.sendRedirect("quiz");
-        }
-    }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         QuestionDTO questionDTO = service.getQuestionDTO();
         req.setAttribute("category",questionDTO.getCategory());
         req.setAttribute("answers",questionDTO.getPossibleAnswers());
+        req.setAttribute("question",questionDTO.getQuestion());
+        req.setAttribute("difficulty",questionDTO.getDifficulty());
 
 
-
-        req.getRequestDispatcher("start.jsp").forward(req,resp);
+        req.getRequestDispatcher("game.jsp").forward(req,resp);
 
     }
 

@@ -13,13 +13,23 @@
 </head>
 <body>
 <h1>¡Quiz game!</h1>
-<form action="quiz" method="post">
-    <input type="hidden" name="type" value="game">
-    <h2><c:out value="question">${question.getQuestion.getText()}</h2>
-    <div>
-    <button type="submit" name="but"></button>
-    </div>
 
-</form>
+    <input type="hidden" name="type" value="game">
+    <h2>
+<c:out value="${question}"/>
+    </h2>
+    <div>
+    <form action="quiz" method="post">
+
+    <c:forEach var="ans" items="${answers}">
+
+        <button>
+            <c:out value="${ans}"/>
+        </button>
+
+    </c:forEach>
+    </form>
+
+    </div>
 </body>
 </html>
