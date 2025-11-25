@@ -22,17 +22,20 @@ public class QuizServlet extends HttpServlet {
 
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        QuestionDTO questionDTO = service.getQuestionDTO();
-        req.getSession().setAttribute("questionDTO", questionDTO);
-        req.setAttribute("category",questionDTO.getCategory());
-        req.setAttribute("answers",questionDTO.getPossibleAnswers());
-        req.setAttribute("question",questionDTO.getQuestion());
-        req.setAttribute("difficulty",questionDTO.getDifficulty());
-        req.setAttribute("time", ((long) req.getSession().getAttribute("deadline")) - System.currentTimeMillis());
+        if((long)req.getSession().getAttribute("deadline")<System.currentTimeMillis()) {
+            resp.sendRedirect(req.getContextPath() + "/end");
+        }else {
+            QuestionDTO questionDTO = service.getQuestionDTO();
+            req.getSession().setAttribute("questionDTO", questionDTO);
+            req.setAttribute("category", questionDTO.getCategory());
+            req.setAttribute("answers", questionDTO.getPossibleAnswers());
+            req.setAttribute("question", questionDTO.getQuestion());
+            req.setAttribute("difficulty", questionDTO.getDifficulty());
+            req.setAttribute("time", ((long) req.getSession().getAttribute("deadline")) - System.currentTimeMillis());
 
 
-        req.getRequestDispatcher("game.jsp").forward(req,resp);
-
+            req.getRequestDispatcher("game.jsp").forward(req, resp);
+        }
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

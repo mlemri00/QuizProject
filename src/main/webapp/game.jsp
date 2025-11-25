@@ -14,7 +14,7 @@
 <body>
 <h1>¡Quiz game!</h1>
 
-<h2 id="timeJ">${time}</h2>
+<input type="hidden" id="timeJ" value="${time}">
 <h3 id="time"></h3>
 
     <input type="hidden" name="type" value="game">
@@ -38,7 +38,7 @@
 </body>
 <script>
     document.addEventListener("DOMContentLoaded",(e)=>{
-        const num = Number.parseInt(document.querySelector("#timeJ").innerHTML);
+        const num = Number.parseInt(document.querySelector("#timeJ").value);
         let countDown = new Date().getTime() + num;
         let x = setInterval(function() {
             let now = new Date().getTime();
@@ -46,7 +46,12 @@
             let min = Math.floor((rest%(1000 *60*60))/(1000*60));
             let sec = Math.floor((rest%(1000 *60)) / 1000);
             document.getElementById("time").innerHTML =  min + "m " + sec + "s ";
+            if (rest<=0){
+                document.getElementById("time").innerHTML="LOSERR!!"
+                clearInterval(x);
+            }
         }, 37);
+
     })
 </script>
 </html>
