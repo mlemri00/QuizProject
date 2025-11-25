@@ -40,17 +40,13 @@
     document.addEventListener("DOMContentLoaded",(e)=>{
         const num = Number.parseInt(document.querySelector("#timeJ").innerHTML);
         let countDown = new Date().getTime() + num;
-
         let x = setInterval(function() {
             let now = new Date().getTime();
-
-            let distance = countDown - now;
-            let minutes = Math.floor((distance%(1000 *60 *60))/(1000*60));
-            let seconds = Math.floor((distance%(1000 *60)) / 1000);
-
-            document.getElementById("time").innerHTML =  minutes + "m " + seconds + "s ";
-
-        }, 1000);
+            let rest = countDown - now;
+            let min = Math.floor((rest%(1000 *60*60))/(1000*60));
+            let sec = Math.floor((rest%(1000 *60)) / 1000);
+            document.getElementById("time").innerHTML =  min + "m " + sec + "s ";
+        }, 37);
     })
 </script>
 </html>
