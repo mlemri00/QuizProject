@@ -25,7 +25,14 @@ public class QuizService {
         List<String> allAnswers =  new ArrayList<>();
         allAnswers.addAll(question.getIncorrectAnswers());
         allAnswers.add(question.getCorrectAnswer());
-        return new QuestionDTO(question.getCategory(),allAnswers,question.getQuestion().getText(),question.getDifficulty());
+
+
+
+        return new QuestionDTO(question.getCategory(),allAnswers,question.getQuestion().getText(), question.getDifficulty(), question.getIncorrectAnswers(), question.getCorrectAnswer());
+    }
+
+    public boolean validarRespuesta(QuestionDTO ques, String respuesta){
+        return ques.getCorrectAnswer().equals(respuesta);
     }
 
 

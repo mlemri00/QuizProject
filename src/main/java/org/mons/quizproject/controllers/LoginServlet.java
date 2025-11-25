@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.mons.quizproject.DTO.UserDto;
 import org.mons.quizproject.service.UserServiceImp;
 
@@ -43,8 +44,11 @@ public class LoginServlet  extends HttpServlet {
 
 
             } else if (service.validateUser(user, password)) {
-                request.getSession(true).setAttribute("username", user.getUsername());
-                request.getSession(false).setMaxInactiveInterval(60);
+                long deadline = System.currentTimeMillis() + 60000;
+
+                HttpSession session = request.getSession(true);
+                session.setAttribute("username", user.getUsername());
+                session.setAttribute("deadline", deadline);
                 response.sendRedirect("quiz");
 
             }

@@ -23,7 +23,7 @@
 
     <c:forEach var="ans" items="${answers}">
 
-        <button>
+        <button value="${ans}" type="submit" name="ans">
             <c:out value="${ans}"/>
         </button>
 

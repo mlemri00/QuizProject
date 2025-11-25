@@ -13,5 +13,7 @@ public class QuestionDTO {
     private List<String> possibleAnswers;
     private String question;
     private String difficulty;
+    private List<String>incorrectAnswers;
+    private String correctAnswer;
 
 }
