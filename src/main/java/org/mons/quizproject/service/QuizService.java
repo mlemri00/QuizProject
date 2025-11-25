@@ -28,7 +28,11 @@ public class QuizService {
 
 
 
-        return new QuestionDTO(question.getCategory(),allAnswers,question.getQuestion().getText(), question.getDifficulty(), question.getIncorrectAnswers(), question.getCorrectAnswer());
+        return new QuestionDTO(question.getCategory(),
+                allAnswers,question.getQuestion().getText(),
+                question.getDifficulty(),
+                question.getIncorrectAnswers(),
+                question.getCorrectAnswer());
     }
 
     public boolean validarRespuesta(QuestionDTO ques, String respuesta){
