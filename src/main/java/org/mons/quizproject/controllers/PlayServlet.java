@@ -23,7 +23,7 @@ public class PlayServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if((long)req.getSession().getAttribute("deadline")<System.currentTimeMillis()) {
-            resp.sendRedirect(req.getContextPath() + "/end");
+            resp.sendRedirect(req.getContextPath() + "/ranking");
         }else {
             QuestionDTO questionDTO = service.getQuestionDTO();
             req.getSession().setAttribute("questionDTO", questionDTO);
@@ -48,7 +48,7 @@ public class PlayServlet extends HttpServlet {
         }
         if((long)session.getAttribute("deadline")<System.currentTimeMillis()){
 
-            resp.sendRedirect(req.getContextPath()+"/end");
+            resp.sendRedirect(req.getContextPath()+"/ranking");
 
         } else {
             if (service.validarRespuesta(questionDTO, resposta)) {

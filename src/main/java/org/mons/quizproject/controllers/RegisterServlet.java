@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("deadline", deadline);
             response.sendRedirect("play");
         } else {
-            String error = "Usuario ya existe, inicie sesion o registre un usuario con otro nombre";
+            String error = "This user exists, try to log in!";
             request.setAttribute("error",error);
             request.getRequestDispatcher("register.jsp").forward(request,response);
         }
