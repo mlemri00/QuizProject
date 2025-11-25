@@ -14,6 +14,8 @@
 <body>
 <h1>¡Quiz game!</h1>
 
+<h3>${time}</h3>
+
     <input type="hidden" name="type" value="game">
     <h2>
 <c:out value="${question}"/>

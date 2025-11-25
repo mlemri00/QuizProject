@@ -23,11 +23,12 @@ public class QuizServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         QuestionDTO questionDTO = service.getQuestionDTO();
-        req.setAttribute("questionDTO", questionDTO);
+        req.getSession().setAttribute("questionDTO", questionDTO);
         req.setAttribute("category",questionDTO.getCategory());
         req.setAttribute("answers",questionDTO.getPossibleAnswers());
         req.setAttribute("question",questionDTO.getQuestion());
         req.setAttribute("difficulty",questionDTO.getDifficulty());
+        req.setAttribute("time", ((long) req.getSession().getAttribute("deadline")) -System.currentTimeMillis());
 
 
         req.getRequestDispatcher("game.jsp").forward(req,resp);
@@ -37,8 +38,12 @@ public class QuizServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String resposta =  req.getParameter("ans");
-        QuestionDTO questionDTO = (QuestionDTO) req.getAttribute("question");
-        if((long)session.getAttribute("deadline")>System.currentTimeMillis()){
+        QuestionDTO questionDTO = (QuestionDTO) session.getAttribute("questionDTO");
+        if(questionDTO == null){
+            System.out.println("Question DTO is null");
+
+        }
+        if((long)session.getAttribute("deadline")<System.currentTimeMillis()){
             session.invalidate();
             resp.sendRedirect(req.getContextPath()+"/end");
         } else {
