@@ -10,13 +10,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.mons.quizproject.DTO.UserDto;
 
-import org.mons.quizproject.service.UserServiceImp;
+import org.mons.quizproject.service.UserService;
 
 import java.io.IOException;
 
 @WebServlet(name = "register-servlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
-    UserServiceImp service = new UserServiceImp();
+    UserService service = new UserService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDto user = service.addUser(
@@ -32,6 +32,7 @@ public class RegisterServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("username", user.getUsername());
             session.setAttribute("deadline", deadline);
+            session.setAttribute("createdAt",session.getCreationTime());
             response.sendRedirect("play");
         } else {
             String error = "This user exists, try to log in!";

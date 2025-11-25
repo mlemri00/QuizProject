@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.mons.quizproject.DTO.UserDto;
-import org.mons.quizproject.service.UserServiceImp;
+import org.mons.quizproject.service.UserService;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -17,12 +17,12 @@ import java.util.Objects;
 
 @WebServlet(name="login-servlet", value= "/login")
 public class LoginServlet  extends HttpServlet {
-    UserServiceImp service;
+    UserService service;
 
 
     @Override
     public  void init(){
-        service = new UserServiceImp();
+        service = new UserService();
 
     }
 
@@ -49,6 +49,7 @@ public class LoginServlet  extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("username", user.getUsername());
                 session.setAttribute("deadline", deadline);
+                session.setAttribute("createdAt",session.getCreationTime());
                 response.sendRedirect("play");
 
             }

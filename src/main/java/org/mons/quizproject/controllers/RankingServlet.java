@@ -8,8 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.mons.quizproject.DTO.PartidaDTO;
 import org.mons.quizproject.models.Juego;
-import org.mons.quizproject.service.PartidaService;
-import org.mons.quizproject.service.UserServiceImp;
+import org.mons.quizproject.service.GameService;
+import org.mons.quizproject.service.UserService;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,16 +17,13 @@ import java.util.List;
 @WebServlet(name="ranking-servlet", value="/ranking")
 
 public class RankingServlet extends HttpServlet {
-    PartidaService ps = new PartidaService();
-    UserServiceImp us = new UserServiceImp();
+    GameService gameService = new GameService();
+    UserService userService = new UserService();
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false);
-        int puntuacion = (int)(System.currentTimeMillis() - session.getCreationTime())/1000;
 
-        ps.addPartida(new PartidaDTO(0,puntuacion, Math.toIntExact(us.getUser((String) session.getAttribute("username")).getId())));
-        List<Juego> juegos = ps.mejoresPartidas();
+        List<Juego> juegos = gameService.mejoresPartidas();
         req.setAttribute("juegos", juegos);
 
         if(juegos == null){
@@ -35,7 +32,6 @@ public class RankingServlet extends HttpServlet {
             System.out.println(juegos);
         }
 
-        session.invalidate();
         req.getRequestDispatcher("end.jsp").forward(req,resp);
 
     }

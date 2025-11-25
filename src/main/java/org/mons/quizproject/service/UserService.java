@@ -7,7 +7,7 @@ import org.mons.quizproject.models.User;
 
 import java.nio.charset.StandardCharsets;
 
-public class UserServiceImp {
+public class UserService {
     UserDaoOrmImpl dao = new UserDaoOrmImpl();
 
     public UserDto getUser(String username){

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class PartidaService {
+public class GameService {
     UserDaoOrmImpl userDaoOrm = new UserDaoOrmImpl();
     PartidaDaoImp partidaDao = new PartidaDaoImp();
 

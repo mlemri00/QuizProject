@@ -6,8 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.mons.quizproject.DTO.PartidaDTO;
 import org.mons.quizproject.DTO.QuestionDTO;
+import org.mons.quizproject.service.GameService;
 import org.mons.quizproject.service.QuizService;
+import org.mons.quizproject.service.UserService;
 
 import java.io.IOException;
 
@@ -17,15 +20,17 @@ import java.io.IOException;
 @WebServlet(name="play-servlet", value="/play")
 public class PlayServlet extends HttpServlet {
 
-    private QuizService service = new QuizService();
-
+    private QuizService quizService = new QuizService();
+    private GameService gameService = new GameService();
+    private UserService userService = new UserService();
 
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if((long)req.getSession().getAttribute("deadline")<System.currentTimeMillis()) {
+            saveGame(req);
             resp.sendRedirect(req.getContextPath() + "/ranking");
         }else {
-            QuestionDTO questionDTO = service.getQuestionDTO();
+            QuestionDTO questionDTO = quizService.getQuestionDTO();
             req.getSession().setAttribute("questionDTO", questionDTO);
             req.setAttribute("category", questionDTO.getCategory());
             req.setAttribute("answers", questionDTO.getPossibleAnswers());
@@ -47,11 +52,11 @@ public class PlayServlet extends HttpServlet {
 
         }
         if((long)session.getAttribute("deadline")<System.currentTimeMillis()){
-
+            saveGame(req);
             resp.sendRedirect(req.getContextPath()+"/ranking");
 
         } else {
-            if (service.validarRespuesta(questionDTO, resposta)) {
+            if (quizService.validarRespuesta(questionDTO, resposta)) {
                 long deadline = (long) session.getAttribute("deadline");
                 deadline = deadline + (10 * 1000);
                 session.setAttribute("deadline", deadline);
@@ -66,10 +71,23 @@ public class PlayServlet extends HttpServlet {
 
             }
         }
+    }
 
-
-
-
+    private void saveGame(HttpServletRequest req){
+        HttpSession session = req.getSession(false);
+        int puntuacion = (int)(System.currentTimeMillis() - (long) session.getAttribute("createdAt"))/1000;
+        System.out.println("----------------------------------------------------------------------");
+        gameService.addPartida(new PartidaDTO(
+                        0,
+                        puntuacion,
+                        Math.toIntExact(
+                                userService.getUser(
+                                        (String) session.getAttribute("username")).getId()
+                        )
+                )
+        );
 
     }
+
+
 }
