@@ -32,7 +32,7 @@ public class RegisterServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("username", user.getUsername());
             session.setAttribute("deadline", deadline);
-            response.sendRedirect("quiz");
+            response.sendRedirect("play");
         } else {
             String error = "Usuario ya existe, inicie sesion o registre un usuario con otro nombre";
             request.setAttribute("error",error);

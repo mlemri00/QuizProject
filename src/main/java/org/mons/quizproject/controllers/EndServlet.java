@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name="endServlet", value="/end")
+@WebServlet(name="end-servlet", value="/end")
 
 public class EndServlet extends HttpServlet {
     PartidaService ps = new PartidaService();

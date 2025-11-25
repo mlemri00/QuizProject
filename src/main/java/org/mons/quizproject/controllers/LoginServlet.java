@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
-@WebServlet(name="loginServlet", value= "/login")
+@WebServlet(name="login-servlet", value= "/login")
 public class LoginServlet  extends HttpServlet {
     UserServiceImp service;
 
@@ -49,7 +49,7 @@ public class LoginServlet  extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("username", user.getUsername());
                 session.setAttribute("deadline", deadline);
-                response.sendRedirect("quiz");
+                response.sendRedirect("play");
 
             }
 

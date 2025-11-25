@@ -22,7 +22,7 @@
 <c:out value="${question}"/>
     </h2>
     <div>
-    <form action="quiz" method="post">
+    <form action="play" method="post">
 
     <c:forEach var="ans" items="${answers}">
 

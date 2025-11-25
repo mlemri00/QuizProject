@@ -14,8 +14,8 @@ import java.io.IOException;
 
 
 
-@WebServlet(name="QuizServlet", value="/quiz")
-public class QuizServlet extends HttpServlet {
+@WebServlet(name="play-servlet", value="/play")
+public class PlayServlet extends HttpServlet {
 
     private QuizService service = new QuizService();
 
@@ -56,13 +56,13 @@ public class QuizServlet extends HttpServlet {
                 deadline = deadline + (10 * 1000);
                 session.setAttribute("deadline", deadline);
 
-                resp.sendRedirect(req.getContextPath() + "/quiz");
+                resp.sendRedirect(req.getContextPath() + "/play");
             } else{
                 long deadline = (long) session.getAttribute("deadline");
                 deadline = deadline - (10 * 1000);
                 session.setAttribute("deadline", deadline);
 
-                resp.sendRedirect(req.getContextPath() + "/quiz");
+                resp.sendRedirect(req.getContextPath() + "/play");
 
             }
         }

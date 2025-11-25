@@ -13,7 +13,7 @@
 <body>
 <h1>¡Quiz game!</h1>
 
-<a href="quiz">Pulsa</a>
+<a href="play">Pulsa</a>
 
 </body>
 </html>

@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>¡Quiz game!</h1>
-<form action="quiz" method="post">
+<form action="play" method="post">
     <input type="hidden" name="type" value="init">
     <button type="submit">Start</button>
 </form>
