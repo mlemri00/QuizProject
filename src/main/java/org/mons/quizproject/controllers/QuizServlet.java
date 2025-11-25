@@ -28,7 +28,7 @@ public class QuizServlet extends HttpServlet {
         req.setAttribute("answers",questionDTO.getPossibleAnswers());
         req.setAttribute("question",questionDTO.getQuestion());
         req.setAttribute("difficulty",questionDTO.getDifficulty());
-        req.setAttribute("time", ((long) req.getSession().getAttribute("deadline")) -System.currentTimeMillis());
+        req.setAttribute("time", ((long) req.getSession().getAttribute("deadline")) - System.currentTimeMillis());
 
 
         req.getRequestDispatcher("game.jsp").forward(req,resp);
