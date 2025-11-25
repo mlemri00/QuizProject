@@ -1,4 +1,36 @@
 package org.mons.quizproject.controllers;
 
-public class EndServlet {
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.mons.quizproject.models.Juego;
+import org.mons.quizproject.service.PartidaService;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+@WebServlet(name="endServlet", value="/end")
+
+public class EndServlet extends HttpServlet {
+    PartidaService ps = new PartidaService();
+
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        List<Juego> juegos = ps.mejoresPartidas();
+        req.setAttribute("juegos", juegos);
+
+
+        if(juegos == null){
+            System.out.println("No juegos encontrados");
+        }
+
+
+        req.getRequestDispatcher("end.jsp").forward(req,resp);
+
+    }
 }

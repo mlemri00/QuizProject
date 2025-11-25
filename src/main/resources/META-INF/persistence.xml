@@ -5,6 +5,7 @@
              version="3.2">
     <persistence-unit name="quizMySQL">
         <class>org.mons.quizproject.models.User</class>
+        <class>org.mons.quizproject.models.Partida</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://dbQuiz:3306/quiz"/>

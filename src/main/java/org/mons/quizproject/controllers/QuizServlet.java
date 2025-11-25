@@ -44,8 +44,9 @@ public class QuizServlet extends HttpServlet {
 
         }
         if((long)session.getAttribute("deadline")<System.currentTimeMillis()){
-            session.invalidate();
+
             resp.sendRedirect(req.getContextPath()+"/end");
+
         } else {
             if (service.validarRespuesta(questionDTO, resposta)) {
                 long deadline = (long) session.getAttribute("deadline");

@@ -12,5 +12,13 @@
 </head>
 <body>
 
+<c:if test="${juegos != null}">
+    <c:forEach var="juego" items="${juegos}">
+        <tr>
+            <td>${juego.username}</td>
+            <td>${juego.puntuacion}</td>
+        </tr>
+    </c:forEach>
+</c:if>
 </body>
 </html>

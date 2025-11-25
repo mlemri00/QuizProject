@@ -5,6 +5,8 @@ import jakarta.persistence.Query;
 import org.mons.quizproject.models.User;
 import org.mons.quizproject.util.ConnectionManager;
 
+import java.util.List;
+
 public class UserDaoOrmImpl {
     private EntityManager em;
 
@@ -26,6 +28,14 @@ public class UserDaoOrmImpl {
         }
 
 
+    }
+
+    public User getUser(int id) {
+        try{
+            return em.find(User.class, id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public User addUser(User user) {
