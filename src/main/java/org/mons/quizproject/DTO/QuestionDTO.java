@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class QuestionDTO {
     private String category;
-    private List<String> answers;
+    private List<String> possibleAnswers;
     private String question;
     private String difficulty;
 }

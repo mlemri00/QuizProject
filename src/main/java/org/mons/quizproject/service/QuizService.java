@@ -6,6 +6,9 @@ import org.mons.quizproject.DAO.QuestionDaoApiImpl;
 import org.mons.quizproject.DTO.QuestionDTO;
 import org.mons.quizproject.models.Question;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuizService {
     QuestionDaoApiImpl questionDAO = new QuestionDaoApiImpl();
     QuestionDTO questionDTO;
@@ -15,11 +18,16 @@ public class QuizService {
 
     public QuestionDTO getQuestionDTO(){
         Question question = questionDAO.getQuestion("hard").get(0);
-
-
-
-
+        return convQuestionDTO(question);
     }
+
+    private QuestionDTO convQuestionDTO(Question question){
+        List<String> allAnswers =  new ArrayList<>();
+        allAnswers.addAll(question.getIncorrectAnswers());
+        allAnswers.add(question.getCorrectAnswer());
+        return new QuestionDTO(question.getCategory(),allAnswers,question.getQuestion().getText(),question.getDifficulty());
+    }
+
 
 
 
