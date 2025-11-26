@@ -7,6 +7,7 @@ import org.mons.quizproject.DTO.QuestionDTO;
 import org.mons.quizproject.models.Question;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QuizService {
@@ -25,11 +26,12 @@ public class QuizService {
         List<String> allAnswers =  new ArrayList<>();
         allAnswers.addAll(question.getIncorrectAnswers());
         allAnswers.add(question.getCorrectAnswer());
-
+        Collections.shuffle(allAnswers);
 
 
         return new QuestionDTO(question.getCategory(),
-                allAnswers,question.getQuestion().getText(),
+                allAnswers,
+                question.getQuestion().getText(),
                 question.getDifficulty(),
                 question.getIncorrectAnswers(),
                 question.getCorrectAnswer());
