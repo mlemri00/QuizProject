@@ -9,32 +9,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>¡Quiz game!<</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>¡Quiz game!</h1>
 
-<input type="hidden" id="timeJ" value="${time}">
-<h3 id="time"></h3>
+<div class="game-content"> <h3 id="time"></h3>
+    <input type="hidden" id="timeJ" value="${time}">
+
 
     <input type="hidden" name="type" value="game">
     <h2>
-<c:out value="${question}"/>
+        <c:out value="${question}"/>
     </h2>
-    <div>
-    <form action="play" method="post">
+    <div class="answers-container"> <form action="play" method="post">
 
-    <c:forEach var="ans" items="${answers}">
+        <c:forEach var="ans" items="${answers}">
+            <button value="${ans}" type="submit" name="ans">
+                <c:out value="${ans}"/>
+            </button>
 
-        <button value="${ans}" type="submit" name="ans">
-            <c:out value="${ans}"/>
-        </button>
-
-    </c:forEach>
+        </c:forEach>
     </form>
 
     </div>
-
+</div>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded",(e)=>{
