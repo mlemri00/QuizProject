@@ -14,8 +14,8 @@ import java.io.IOException;
 
 
 
-@WebServlet(name="QuizServlet", value="/quiz")
-public class QuizServlet extends HttpServlet {
+@WebServlet(name="play-servlet", value="/play")
+public class PlayServlet extends HttpServlet {
 
     private QuizService service = new QuizService();
 
@@ -23,7 +23,7 @@ public class QuizServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if((long)req.getSession().getAttribute("deadline")<System.currentTimeMillis()) {
-            resp.sendRedirect(req.getContextPath() + "/end");
+            resp.sendRedirect(req.getContextPath() + "/ranking");
         }else {
             QuestionDTO questionDTO = service.getQuestionDTO();
             req.getSession().setAttribute("questionDTO", questionDTO);
@@ -48,7 +48,7 @@ public class QuizServlet extends HttpServlet {
         }
         if((long)session.getAttribute("deadline")<System.currentTimeMillis()){
 
-            resp.sendRedirect(req.getContextPath()+"/end");
+            resp.sendRedirect(req.getContextPath()+"/ranking");
 
         } else {
             if (service.validarRespuesta(questionDTO, resposta)) {
@@ -56,13 +56,13 @@ public class QuizServlet extends HttpServlet {
                 deadline = deadline + (10 * 1000);
                 session.setAttribute("deadline", deadline);
 
-                resp.sendRedirect(req.getContextPath() + "/quiz");
+                resp.sendRedirect(req.getContextPath() + "/play");
             } else{
                 long deadline = (long) session.getAttribute("deadline");
                 deadline = deadline - (10 * 1000);
                 session.setAttribute("deadline", deadline);
 
-                resp.sendRedirect(req.getContextPath() + "/quiz");
+                resp.sendRedirect(req.getContextPath() + "/play");
 
             }
         }

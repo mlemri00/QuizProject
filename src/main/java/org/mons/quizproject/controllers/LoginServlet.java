@@ -49,7 +49,7 @@ public class LoginServlet  extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("username", user.getUsername());
                 session.setAttribute("deadline", deadline);
-                response.sendRedirect("quiz");
+                response.sendRedirect("play");
 
             }
 

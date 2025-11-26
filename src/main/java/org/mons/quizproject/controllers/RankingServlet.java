@@ -8,17 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.mons.quizproject.DTO.PartidaDTO;
 import org.mons.quizproject.models.Juego;
-import org.mons.quizproject.models.Partida;
 import org.mons.quizproject.service.PartidaService;
 import org.mons.quizproject.service.UserServiceImp;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name="endServlet", value="/end")
+@WebServlet(name="ranking-servlet", value="/ranking")
 
-public class EndServlet extends HttpServlet {
+public class RankingServlet extends HttpServlet {
     PartidaService ps = new PartidaService();
     UserServiceImp us = new UserServiceImp();
 
@@ -32,7 +30,7 @@ public class EndServlet extends HttpServlet {
         req.setAttribute("juegos", juegos);
 
         if(juegos == null){
-            System.out.println("No juegos encontrados");
+            System.out.println("No games found");
         } else{
             System.out.println(juegos);
         }
