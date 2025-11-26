@@ -39,7 +39,7 @@
 
     </form>
 
-    <a href="register">No tines cuenta? Registrate</a>
+    <a href="register">No account? Register</a>
 </main>
 
 
