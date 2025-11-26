@@ -18,26 +18,22 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     UserService service = new UserService();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDto user = service.addUser(
-                request.getParameter("username"),
-                request.getParameter("firstName"),
-                request.getParameter("lastName"),
-                request.getParameter("password")
+                req.getParameter("username"),
+                req.getParameter("firstName"),
+                req.getParameter("lastName"),
+                req.getParameter("password")
 
         );
         if(user != null){
-            long deadline = System.currentTimeMillis() + 60000;
-
-            HttpSession session = request.getSession(true);
+            HttpSession session = req.getSession(true);
             session.setAttribute("username", user.getUsername());
-            session.setAttribute("deadline", deadline);
-            session.setAttribute("createdAt",System.currentTimeMillis());
-            response.sendRedirect("play");
+            req.getRequestDispatcher("start.jsp").forward(req,resp);
         } else {
             String error = "This user exists, try to log in!";
-            request.setAttribute("error",error);
-            request.getRequestDispatcher("register.jsp").forward(request,response);
+            req.setAttribute("error",error);
+            req.getRequestDispatcher("register.jsp").forward(req,resp);
         }
 
 

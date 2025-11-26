@@ -24,8 +24,22 @@ public class PlayServlet extends HttpServlet {
     private GameService gameService = new GameService();
     private UserService userService = new UserService();
 
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getMethod().equalsIgnoreCase("post")){
+            if (req.getParameter("type").equalsIgnoreCase("init")){
+               initTimeDeadline(req, resp);
+            }else{
+                doPost(req, resp);
+            }
+        }else{
+            doGet(req, resp);
+        }
+    }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+
         if((long)req.getSession().getAttribute("deadline")<System.currentTimeMillis()) {
             saveGame(req);
             resp.sendRedirect(req.getContextPath() + "/ranking");
@@ -76,7 +90,7 @@ public class PlayServlet extends HttpServlet {
     private void saveGame(HttpServletRequest req){
         HttpSession session = req.getSession(false);
         int puntuacion = (int)(System.currentTimeMillis() - (long) session.getAttribute("createdAt"))/1000;
-        System.out.println("----------------------------------------------------------------------");
+        System.out.println("---------------------------------GAME-SAVED-------------------------------------");
         gameService.addPartida(new PartidaDTO(
                         0,
                         puntuacion,
@@ -86,6 +100,16 @@ public class PlayServlet extends HttpServlet {
                         )
                 )
         );
+
+        session.removeAttribute("createdAt");
+    }
+    private void initTimeDeadline(HttpServletRequest req, HttpServletResponse resp){
+        HttpSession session = req.getSession();
+        long deadline = System.currentTimeMillis() + 60000;
+
+        session.setAttribute("deadline", deadline);
+        session.setAttribute("createdAt",System.currentTimeMillis());
+
 
     }
 

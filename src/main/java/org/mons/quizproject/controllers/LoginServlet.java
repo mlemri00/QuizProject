@@ -26,40 +26,38 @@ public class LoginServlet  extends HttpServlet {
 
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if(Objects.equals(request.getParameter("__method"), "POST")) {
-            String username = request.getParameter("username");
+        if(Objects.equals(req.getParameter("__method"), "POST")) {
+            String username = req.getParameter("username");
             UserDto user = service.getUser(username);
 
             String password = Hashing.sha256()
-                    .hashString(request.getParameter("password"), StandardCharsets.UTF_8)
+                    .hashString(req.getParameter("password"), StandardCharsets.UTF_8)
                     .toString();
 
             if (!service.validateUser(user, password) || user == null) {
                 System.out.println("no valia o user es null");
                 String error = "Invalid username or password";
-                request.setAttribute("error", error);
-                response.sendRedirect("login.jsp");
+                req.setAttribute("error", error);
+                resp.sendRedirect("login.jsp");
 
 
             } else if (service.validateUser(user, password)) {
-                long deadline = System.currentTimeMillis() + 60000;
 
-                HttpSession session = request.getSession(true);
+
+                HttpSession session = req.getSession(true);
                 session.setAttribute("username", user.getUsername());
-                session.setAttribute("deadline", deadline);
-                session.setAttribute("createdAt",System.currentTimeMillis());
-                response.sendRedirect("play");
+                req.getRequestDispatcher("start.jsp");
 
             }
 
-        } else if(Objects.equals(request.getParameter("__method"), "DELETE")) {
-            if(request.getSession(false).getAttribute("username") == null) {
-                response.sendRedirect("login.jsp");
+        } else if(Objects.equals(req.getParameter("__method"), "DELETE")) {
+            if(req.getSession(false).getAttribute("username") == null) {
+                resp.sendRedirect("login.jsp");
             } else {
-                request.getSession(false).invalidate();
-                response.sendRedirect("login.jsp");
+                req.getSession(false).invalidate();
+                resp.sendRedirect("login.jsp");
 
             }
 

@@ -14,7 +14,7 @@
 <h1>¡Quiz game!</h1>
 <form action="play" method="post">
     <input type="hidden" name="type" value="init">
-    <button type="submit">Start</button>
+    <button type="submit">Play</button>
 </form>
 </body>
 </html>
