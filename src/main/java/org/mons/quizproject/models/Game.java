@@ -21,9 +21,12 @@ public class Game {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
-    public Game(User user, int gameScore){
+    @Column(name = "correct_answers")
+    private int correctAnswers;
+    public Game(User user, int gameScore, int correctAnswers){
         this.user=user;
         this.gameScore=gameScore;
+        this.correctAnswers=correctAnswers;
     }
 
 }

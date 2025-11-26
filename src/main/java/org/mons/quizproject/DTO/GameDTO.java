@@ -15,14 +15,17 @@ public class GameDTO {
     private long user_id;
     private String username;
     private int gameScore;
-    public GameDTO(int gameScore, int user_id){
+    private int correctAnswers;
+    public GameDTO(int gameScore, int user_id,int correctAnswers){
         this.user_id=user_id;
         this.gameScore=gameScore;
+        this.correctAnswers=correctAnswers;
     }
     public GameDTO(Game game){
         this.username=game.getUser().getUsername();
         this.gameScore= game.getGameScore();
         this.user_id=game.getUser().getId();
+        this.correctAnswers=game.getCorrectAnswers();
     }
 
 

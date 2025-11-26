@@ -56,6 +56,11 @@ public class PlayServlet extends HttpServlet {
                 deadline = deadline + (10 * 1000);
                 session.setAttribute("deadline", deadline);
 
+                int correctAnswers = (int)session.getAttribute("correctAnswers");
+                correctAnswers++;
+
+                session.setAttribute("correctAnswers",correctAnswers);
+
                 resp.sendRedirect(req.getContextPath() + "/play");
             } else{
                 long deadline = (long) session.getAttribute("deadline");

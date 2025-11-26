@@ -23,7 +23,7 @@ public class GameService {
     public void addGame(GameDTO gameDTO) {
 
         User user = userDao.getUser((int)gameDTO.getUser_id());
-        Game game = new Game(user, gameDTO.getGameScore());
+        Game game = new Game(user, gameDTO.getGameScore(),gameDTO.getCorrectAnswers());
 
         gameDao.addGame(game);
     }

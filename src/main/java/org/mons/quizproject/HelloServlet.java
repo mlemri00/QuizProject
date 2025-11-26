@@ -18,8 +18,7 @@ public class HelloServlet extends HttpServlet {
          qs = new QuestionDaoApiImpl();
         message = "Hello World!";
         User user = new User("test","test","test","test");
-        GameDTO gameDTO = new GameDTO(1234,1);
-        gs.addGame(gameDTO);
+
 
     }
 

@@ -31,11 +31,12 @@ public class RankingServlet extends HttpServlet {
         //Crear session usuario
         HttpSession session = req.getSession();
         int id =(int)((long) session.getAttribute("id"));
+        int correctAnswers = (int) session.getAttribute("correctAnswers");
         int gameScore = (int)(System.currentTimeMillis() - session.getCreationTime())/1000;
 
 
         //Guardar partida en la base de datos
-        gameService.addGame(new GameDTO(gameScore, id));
+        gameService.addGame(new GameDTO(gameScore, id,correctAnswers));
 
         //Extracción de las partidas de la BD
         List<GameDTO> games = gameService.getbestGames();
