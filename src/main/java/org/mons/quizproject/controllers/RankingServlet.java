@@ -6,37 +6,50 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.mons.quizproject.DTO.PartidaDTO;
-import org.mons.quizproject.models.Juego;
-import org.mons.quizproject.service.PartidaService;
+import org.mons.quizproject.DTO.GameDTO;
+import org.mons.quizproject.models.Game;
+import org.mons.quizproject.service.GameService;
 import org.mons.quizproject.service.UserServiceImp;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name="ranking-servlet", value="/ranking")
 
 public class RankingServlet extends HttpServlet {
-    PartidaService ps = new PartidaService();
+    GameService gameService = new GameService();
     UserServiceImp us = new UserServiceImp();
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        //Crear session usuario
         HttpSession session = req.getSession();
+        String username = session.getAttribute("username").toString();
         int puntuacion = (int)(System.currentTimeMillis() - session.getCreationTime())/1000;
 
-        ps.addPartida(new PartidaDTO(0,puntuacion, Math.toIntExact(us.getUser((String) session.getAttribute("username")).getId())));
-        List<Juego> juegos = ps.mejoresPartidas();
-        req.setAttribute("juegos", juegos);
 
-        if(juegos == null){
+        //Guardar partida en la base de datos
+        gameService.addGame(new GameDTO(puntuacion,
+                Math.toIntExact(us.getUser(username).getId())
+                ,username));
+
+        //Extracción de las partidas de la BD
+        // List<GameDTO> games = gameService.getbestGames();
+
+        // Enviar a ranking.jsp la informació  de la query
+        List<Game>games = new ArrayList<>();
+        req.setAttribute("games", games);
+
+        if(games == null){
             System.out.println("No games found");
         } else{
-            System.out.println(juegos);
+            System.out.println(games);
         }
 
         session.invalidate();
-        req.getRequestDispatcher("end.jsp").forward(req,resp);
+        req.getRequestDispatcher("ranking.jsp").forward(req,resp);
 
     }
 }

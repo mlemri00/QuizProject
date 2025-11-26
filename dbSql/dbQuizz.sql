@@ -26,20 +26,20 @@ USE `quiz`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Partida`
+-- Estructura de tabla para la tabla `Game`
 --
 
-CREATE TABLE `Partida` (
+CREATE TABLE `game` (
                            `id` int NOT NULL,
                            `user_id` int NOT NULL,
-                           `puntuacion` int NOT NULL
+                           `game_score` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `Partida`
+-- Volcado de datos para la tabla `Game`
 --
 
-INSERT INTO `Partida` (`id`, `user_id`, `puntuacion`) VALUES
+INSERT INTO `game` (`id`, `user_id`, `game_score`) VALUES
                                                           (10, 1, 4),
                                                           (11, 1, 10),
                                                           (12, 1, 40),
@@ -73,9 +73,9 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `password`) VA
 --
 
 --
--- Indices de la tabla `Partida`
+-- Indices de la tabla `Game`
 --
-ALTER TABLE `Partida`
+ALTER TABLE `game`
     ADD PRIMARY KEY (`id`);
 
 --
@@ -89,9 +89,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT de la tabla `Partida`
+-- AUTO_INCREMENT de la tabla `Game`
 --
-ALTER TABLE `Partida`
+ALTER TABLE `game`
     MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --

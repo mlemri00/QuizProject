@@ -37,7 +37,7 @@ public class LoginServlet  extends HttpServlet {
                     .toString();
 
             if (!service.validateUser(user, password) || user == null) {
-                System.out.println("no valia o user es null");
+                System.out.println("User is not valid or is null");
                 String error = "Invalid username or password";
                 request.setAttribute("error", error);
                 response.sendRedirect("login.jsp");

@@ -1,11 +1,10 @@
 package org.mons.quizproject.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.mons.quizproject.DTO.UserDto;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,7 +25,15 @@ public class User {
     private String lastName;
     @Column(name="password")
     private String password;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Game> gamesPlayed;
 
+    public User(String username,String firstName,String lastName, String hashedPassword){
+        this.username=username;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.password=hashedPassword;
+    }
 
 
     public User(UserDto userDto){
