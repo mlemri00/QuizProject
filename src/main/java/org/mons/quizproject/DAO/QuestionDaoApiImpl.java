@@ -16,7 +16,7 @@ public class QuestionDaoApiImpl {
     public List<Question> getQuestion (String difficulty){
         Client client = ClientBuilder.newClient();
 
-        return client.target("https://the-trivia-api.com/v2/questions").queryParam("difficulty",difficulty).request(MediaType.APPLICATION_JSON).get(new GenericType<>(){});
+        return client.target("https://the-trivia-api.com/v2/questions?"+"difficulties="+difficulty).request(MediaType.APPLICATION_JSON).get(new GenericType<>(){});
 
 
     }

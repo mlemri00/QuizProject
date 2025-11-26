@@ -17,8 +17,9 @@ public class QuizService {
 
 
 
-    public QuestionDTO getQuestionDTO(){
-        Question question = questionDAO.getQuestion(difficulties.get(0)).get(0);
+    public QuestionDTO getQuestionDTO(int correctAnswers){
+
+        Question question = questionDAO.getQuestion(getDifficulty(correctAnswers)).get(0);
         return convQuestionDTO(question);
     }
 
@@ -40,7 +41,15 @@ public class QuizService {
     public boolean validarRespuesta(QuestionDTO ques, String respuesta){
         return ques.getCorrectAnswer().equals(respuesta);
     }
-
+    private String getDifficulty(int correctAnswers){
+        if (correctAnswers>=0&&correctAnswers<3){
+            return difficulties.get(0);
+        } else if (correctAnswers>=3&&correctAnswers<6) {
+            return difficulties.get(1);
+        }else {
+            return difficulties.get(2);
+        }
+    }
 
 
 

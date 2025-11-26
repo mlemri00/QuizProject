@@ -25,7 +25,7 @@ public class PlayServlet extends HttpServlet {
         if((long)req.getSession().getAttribute("deadline")<System.currentTimeMillis()) {
             resp.sendRedirect(req.getContextPath() + "/ranking");
         }else {
-            QuestionDTO questionDTO = service.getQuestionDTO();
+            QuestionDTO questionDTO = service.getQuestionDTO((int)req.getSession(false).getAttribute("correctAnswers"));
             req.getSession().setAttribute("questionDTO", questionDTO);
             req.setAttribute("category", questionDTO.getCategory());
             req.setAttribute("answers", questionDTO.getPossibleAnswers());
