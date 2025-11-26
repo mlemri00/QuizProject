@@ -14,7 +14,40 @@
 
 </head>
 <body>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Courier New', monospace;
 
+    }
+    table{
+        width: 600px;
+        border: 1px solid black;
+        box-shadow: 4px 4px 0px black;
+
+    }
+
+    thead{
+        border: 1px solid black;
+        background-color: red;
+        color: white;
+
+    }
+    th{
+        width: 33%;
+        border:1px solid black;
+        justify-content: center;
+    }
+    tr{
+        justify-content: center;
+        text-align: center;
+    }
+
+</style>
 <div class="ranking-container">
     <h1>Best results</h1>
     <c:if test="${games != null}">
