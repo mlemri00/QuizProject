@@ -17,18 +17,22 @@ public class GameDaoImp {
 
     public List<Game> getBestGames(){
         EntityManager em = ConnectionManager.getEntityManager();
-        Query query = em.createQuery("SELECT p FROM Game p WHERE p.gameScore = (SELECT MAX(sub.gameScore) FROM Game sub WHERE sub.userId = p.userId) ORDER BY p.gameScore DESC", Game.class);
+        Query query = em.createQuery("SELECT p FROM Game p WHERE p.gameScore = (SELECT MAX(sub.gameScore) FROM Game sub WHERE sub.user.id = p.user.id) ORDER BY p.gameScore DESC", Game.class);
         query.setMaxResults(10);
 
         List<Game> games = query.getResultList();
         em.close();
-        return query.getResultList();
+        return games;
     }
 
     public void addGame(Game p){
         EntityManager em = ConnectionManager.getEntityManager();
         em.getTransaction().begin();
-        em.persist(p);
+        try {
+            em.persist(p);
+        }catch (Exception e){
+            em.getTransaction().rollback();
+        }
         em.getTransaction().commit();
         em.close();
     }

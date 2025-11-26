@@ -46,14 +46,16 @@ public class UserDaoOrmImpl {
         try{
             em.getTransaction().begin();
             em.persist(user);
-
         } catch (Exception e) {
             em.getTransaction().rollback();
 
             throw new RuntimeException(e);
         }
         em.getTransaction().commit();
+
+        User userCheck = getUser(user.getUsername());
+
         em.close();
-        return user;
+        return userCheck;
     }
 }

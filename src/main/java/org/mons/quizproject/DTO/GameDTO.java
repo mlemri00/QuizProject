@@ -12,13 +12,17 @@ import org.mons.quizproject.models.User;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GameDTO {
-    private long id;
     private long user_id;
     private String username;
     private int gameScore;
     public GameDTO(int gameScore, int user_id){
         this.user_id=user_id;
         this.gameScore=gameScore;
+    }
+    public GameDTO(Game game){
+        this.username=game.getUser().getUsername();
+        this.gameScore= game.getGameScore();
+        this.user_id=game.getUser().getId();
     }
 
 

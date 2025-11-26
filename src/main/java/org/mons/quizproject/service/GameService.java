@@ -8,20 +8,21 @@ import org.mons.quizproject.models.Game;
 import org.mons.quizproject.models.User;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameService {
     UserDaoOrmImpl userDao = new UserDaoOrmImpl();
     GameDaoImp gameDao = new GameDaoImp();
-    /*public List<GameDTO> getbestGames() {
+    public List<GameDTO> getbestGames() {
         return gameDao.getBestGames()
-                .stream().map();
+                .stream().map(GameDTO::new).collect(Collectors.toList());
 
     }
-*/
+
 
     public void addGame(GameDTO gameDTO) {
 
-        User user = userDao.getUser(1);
+        User user = userDao.getUser((int)gameDTO.getUser_id());
         Game game = new Game(user, gameDTO.getGameScore());
 
         gameDao.addGame(game);

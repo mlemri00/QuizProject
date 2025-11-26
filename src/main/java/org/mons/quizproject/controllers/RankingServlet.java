@@ -30,7 +30,6 @@ public class RankingServlet extends HttpServlet {
 
         //Crear session usuario
         HttpSession session = req.getSession();
-        String username = session.getAttribute("username").toString();
         int id =(int)((long) session.getAttribute("id"));
         int gameScore = (int)(System.currentTimeMillis() - session.getCreationTime())/1000;
 
@@ -39,10 +38,10 @@ public class RankingServlet extends HttpServlet {
         gameService.addGame(new GameDTO(gameScore, id));
 
         //Extracción de las partidas de la BD
-        // List<GameDTO> games = gameService.getbestGames();
+        List<GameDTO> games = gameService.getbestGames();
 
         // Enviar a ranking.jsp la informació  de la query
-        List<Game>games = new ArrayList<>();
+
         req.setAttribute("games", games);
 
         if(games == null){
