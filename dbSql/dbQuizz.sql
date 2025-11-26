@@ -40,29 +40,6 @@ CREATE TABLE `game` (
 -- Volcado de datos para la tabla `game`
 --
 
-INSERT INTO `game` (`id`, `user_id`, `game_score`, `correct_answers`) VALUES
-                                                                          (10, 1, 4, 0),
-                                                                          (11, 1, 10, 0),
-                                                                          (12, 1, 40, 0),
-                                                                          (13, 1, 21, 0),
-                                                                          (14, 1, 20, 0),
-                                                                          (15, 1, 1234, 0),
-                                                                          (16, 4, 7, 0),
-                                                                          (17, 4, 5, 0),
-                                                                          (18, 4, 10, 0),
-                                                                          (19, 4, 7, 0),
-                                                                          (20, 6, 23, 0),
-                                                                          (21, 6, 30, 0),
-                                                                          (22, 6, 10, 0),
-                                                                          (23, 6, 103, 0),
-                                                                          (24, 6, 20, 2),
-                                                                          (25, 6, 34, 1),
-                                                                          (26, 6, 75, 7),
-                                                                          (27, 6, 55, 4),
-                                                                          (28, 1, 55, 4);
-
--- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `users`
 --
@@ -75,24 +52,6 @@ CREATE TABLE `users` (
                          `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `password`) VALUES
-                                                                                  (1, 'pedro', 'pedro', 'rubio', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'),
-                                                                                  (2, 'mohanomoja', 'miau', 'chelo', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'),
-                                                                                  (3, 'zxcv', 'zxcv', 'zxcv', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'),
-                                                                                  (4, 'fghj', 'fghj', '1234', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'),
-                                                                                  (5, 'midass', 'midass', 'midass', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'),
-                                                                                  (6, 'zurullete', 'a', 'a', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `game`
 --
 ALTER TABLE `game`
     ADD PRIMARY KEY (`id`),
