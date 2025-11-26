@@ -13,12 +13,12 @@ import java.util.List;
 public class QuizService {
     QuestionDaoApiImpl questionDAO = new QuestionDaoApiImpl();
     QuestionDTO questionDTO;
-    List <String> Difficulties= List.of("easy","medium","hard");
+    List <String> difficulties= List.of("easy","medium","hard");
 
 
 
     public QuestionDTO getQuestionDTO(){
-        Question question = questionDAO.getQuestion("hard").get(0);
+        Question question = questionDAO.getQuestion(difficulties.get(0)).get(0);
         return convQuestionDTO(question);
     }
 
