@@ -18,7 +18,6 @@ import java.util.List;
 
 public class RankingServlet extends HttpServlet {
     GameService gameService = new GameService();
-    UserService userService = new UserService();
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

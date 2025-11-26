@@ -32,7 +32,7 @@ public class RegisterServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("username", user.getUsername());
             session.setAttribute("deadline", deadline);
-            session.setAttribute("createdAt",session.getCreationTime());
+            session.setAttribute("createdAt",System.currentTimeMillis());
             response.sendRedirect("play");
         } else {
             String error = "This user exists, try to log in!";
