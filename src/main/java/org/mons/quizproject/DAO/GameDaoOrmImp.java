@@ -1,6 +1,5 @@
 package org.mons.quizproject.DAO;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.mons.quizproject.models.Game;
@@ -8,10 +7,10 @@ import org.mons.quizproject.util.ConnectionManager;
 
 import java.util.List;
 
-public class GameDaoImp {
+public class GameDaoOrmImp {
 
 
-    public GameDaoImp() {
+    public GameDaoOrmImp() {
 
     }
 

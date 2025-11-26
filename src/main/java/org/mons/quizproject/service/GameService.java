@@ -1,7 +1,6 @@
 package org.mons.quizproject.service;
 
-import jakarta.persistence.EntityManager;
-import org.mons.quizproject.DAO.GameDaoImp;
+import org.mons.quizproject.DAO.GameDaoOrmImp;
 import org.mons.quizproject.DAO.UserDaoOrmImpl;
 import org.mons.quizproject.DTO.GameDTO;
 import org.mons.quizproject.models.Game;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class GameService {
     UserDaoOrmImpl userDao = new UserDaoOrmImpl();
-    GameDaoImp gameDao = new GameDaoImp();
+    GameDaoOrmImp gameDao = new GameDaoOrmImp();
     public List<GameDTO> getbestGames() {
         return gameDao.getBestGames()
                 .stream().map(GameDTO::new).collect(Collectors.toList());
