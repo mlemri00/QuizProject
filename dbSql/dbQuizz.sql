@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: dbQuiz
--- Tiempo de generación: 26-11-2025 a las 15:48:18
+-- Tiempo de generación: 26-11-2025 a las 16:59:54
 -- Versión del servidor: 8.0.44
 -- Versión de PHP: 8.3.27
 
@@ -32,26 +32,34 @@ USE `quiz`;
 CREATE TABLE `game` (
                         `id` int NOT NULL,
                         `user_id` int NOT NULL,
-                        `game_score` int NOT NULL
+                        `game_score` int NOT NULL,
+                        `correct_answers` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `game`
 --
 
-INSERT INTO `game` (`id`, `user_id`, `game_score`) VALUES
-                                                       (10, 1, 4),
-                                                       (11, 1, 10),
-                                                       (12, 1, 40),
-                                                       (13, 1, 21),
-                                                       (14, 1, 20),
-                                                       (15, 1, 1234),
-                                                       (16, 4, 7),
-                                                       (17, 4, 5),
-                                                       (18, 4, 10),
-                                                       (19, 4, 7),
-                                                       (20, 6, 23),
-                                                       (21, 6, 30);
+INSERT INTO `game` (`id`, `user_id`, `game_score`, `correct_answers`) VALUES
+                                                                          (10, 1, 4, 0),
+                                                                          (11, 1, 10, 0),
+                                                                          (12, 1, 40, 0),
+                                                                          (13, 1, 21, 0),
+                                                                          (14, 1, 20, 0),
+                                                                          (15, 1, 1234, 0),
+                                                                          (16, 4, 7, 0),
+                                                                          (17, 4, 5, 0),
+                                                                          (18, 4, 10, 0),
+                                                                          (19, 4, 7, 0),
+                                                                          (20, 6, 23, 0),
+                                                                          (21, 6, 30, 0),
+                                                                          (22, 6, 10, 0),
+                                                                          (23, 6, 103, 0),
+                                                                          (24, 6, 20, 2),
+                                                                          (25, 6, 34, 1),
+                                                                          (26, 6, 75, 7),
+                                                                          (27, 6, 55, 4),
+                                                                          (28, 1, 55, 4);
 
 -- --------------------------------------------------------
 
@@ -104,7 +112,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `game`
 --
 ALTER TABLE `game`
-    MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+    MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
