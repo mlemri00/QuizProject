@@ -16,13 +16,14 @@
 <body>
 
 <div class="ranking-container">
-    <h1>🏆 Mejores Resultados 🏆</h1>
+    <h1>Best results</h1>
     <c:if test="${games != null}">
     <table id="ranking-table">
         <thead>
         <tr>
-            <th>Usuario</th>
-            <th id="score-column">Puntuación</th>
+            <th>User</th>
+            <th id="score-column">Score</th>
+            <th>Correct Answers</th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@
             <tr>
                 <td id="name-column">${game.username}</td>
                 <td id="score-column">${game.gameScore}</td>
+                <td>${game.correctAnswers}</td>
             </tr>
         </c:forEach>
         </tbody>
