@@ -1,33 +1,13 @@
--- phpMyAdmin SQL Dump
--- version 5.2.3
--- https://www.phpmyadmin.net/
---
--- Servidor: dbQuiz
--- Tiempo de generación: 26-11-2025 a las 16:59:54
--- Versión del servidor: 8.0.44
--- Versión de PHP: 8.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de datos: `quiz`
---
 CREATE DATABASE IF NOT EXISTS `quiz` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE `quiz`;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `game`
---
 
 CREATE TABLE `game` (
                         `id` int NOT NULL,
