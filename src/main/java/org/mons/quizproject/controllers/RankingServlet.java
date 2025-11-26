@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.mons.quizproject.DTO.GameDTO;
+import org.mons.quizproject.DTO.UserDto;
 import org.mons.quizproject.models.Game;
 import org.mons.quizproject.service.GameService;
 import org.mons.quizproject.service.UserServiceImp;
@@ -29,11 +30,9 @@ public class RankingServlet extends HttpServlet {
         String username = session.getAttribute("username").toString();
         int puntuacion = (int)(System.currentTimeMillis() - session.getCreationTime())/1000;
 
-
+        UserDto user req.getAttribute("user");
         //Guardar partida en la base de datos
-        gameService.addGame(new GameDTO(puntuacion,
-                Math.toIntExact(us.getUser(username).getId())
-                ,username));
+        gameService.addGame(new GameDTO(puntuacion, ,username));
 
         //Extracción de las partidas de la BD
         // List<GameDTO> games = gameService.getbestGames();

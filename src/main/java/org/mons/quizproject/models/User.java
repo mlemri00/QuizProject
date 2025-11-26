@@ -25,7 +25,7 @@ public class User {
     private String lastName;
     @Column(name="password")
     private String password;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     private List<Game> gamesPlayed;
 
     public User(String username,String firstName,String lastName, String hashedPassword){

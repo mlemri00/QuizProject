@@ -21,8 +21,8 @@ public class Game {
     private User user;
     @Column(name = "game_score")
     private int gameScore;
-    public Game(User userId, int gameScore){
-        this.user=userId;
+    public Game(User user, int gameScore){
+        this.user=user;
         this.gameScore=gameScore;
     }
 
