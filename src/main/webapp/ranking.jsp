@@ -10,17 +10,32 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
 </head>
 <body>
 
-<c:if test="${games != null}">
-    <tr>
-    <c:forEach var="game" items="${games}">
-            <td>${game.username}</td>
-            <td>${game.gameScore}</td>
-    </c:forEach>
-    </tr>
+<div class="ranking-container">
+    <h1>🏆 Mejores Resultados 🏆</h1>
+    <c:if test="${games != null}">
+    <table id="ranking-table">
+        <thead>
+        <tr>
+            <th>Usuario</th>
+            <th id="score-column">Puntuación</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="game" items="${games}">
+            <tr>
+                <td id="name-column">${game.username}</td>
+                <td id="score-column">${game.gameScore}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </c:if>
 
+</div>
 </body>
 </html>
