@@ -31,6 +31,7 @@ public class RegisterServlet extends HttpServlet {
 
             HttpSession session = request.getSession(true);
             session.setAttribute("username", user.getUsername());
+            session.setAttribute("id",user.getId());
             session.setAttribute("deadline", deadline);
             response.sendRedirect("play");
         } else {

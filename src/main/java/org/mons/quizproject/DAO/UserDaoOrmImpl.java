@@ -8,19 +8,15 @@ import org.mons.quizproject.util.ConnectionManager;
 import java.util.List;
 
 public class UserDaoOrmImpl {
-    private EntityManager em;
 
-    public UserDaoOrmImpl() {
-        this.em = ConnectionManager.getEntityManager();
-    }
 
     public User getUser(String username) {
-
+        EntityManager em = ConnectionManager.getEntityManager();
         try{
             Query query = em.createQuery("select u from User u where u.username = :username");
             query.setParameter("username", username);
             User user = (User) query.getSingleResult();
-
+            em.close();
             return user;
 
         } catch (Exception e) {
@@ -31,23 +27,33 @@ public class UserDaoOrmImpl {
     }
 
     public User getUser(int id) {
+        EntityManager em = ConnectionManager.getEntityManager();
         try{
-            return em.find(User.class, id);
+            User user = em.find(User.class, id);
+            em.close();
+            return user;
+
         } catch (Exception e) {
+            em.close();
             throw new RuntimeException(e);
         }
+
     }
 
     public User addUser(User user) {
+        EntityManager em = ConnectionManager.getEntityManager();
+
         try{
             em.getTransaction().begin();
             em.persist(user);
 
         } catch (Exception e) {
             em.getTransaction().rollback();
+
             throw new RuntimeException(e);
         }
         em.getTransaction().commit();
+        em.close();
         return user;
     }
 }

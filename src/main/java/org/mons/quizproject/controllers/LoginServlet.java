@@ -45,9 +45,9 @@ public class LoginServlet  extends HttpServlet {
 
             } else if (service.validateUser(user, password)) {
                 long deadline = System.currentTimeMillis() + 60000;
-                request.setAttribute("user",user);
                 HttpSession session = request.getSession(true);
                 session.setAttribute("username", user.getUsername());
+                session.setAttribute("id",user.getId());
                 session.setAttribute("deadline", deadline);
                 response.sendRedirect("play");
 

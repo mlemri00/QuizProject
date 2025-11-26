@@ -5,15 +5,22 @@ import java.io.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.mons.quizproject.DAO.QuestionDaoApiImpl;
+import org.mons.quizproject.DTO.GameDTO;
+import org.mons.quizproject.models.User;
+import org.mons.quizproject.service.GameService;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
     QuestionDaoApiImpl qs;
     public void init() {
-
+        GameService gs = new GameService();
          qs = new QuestionDaoApiImpl();
         message = "Hello World!";
+        User user = new User("test","test","test","test");
+        GameDTO gameDTO = new GameDTO(1234,1);
+        gs.addGame(gameDTO);
+
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

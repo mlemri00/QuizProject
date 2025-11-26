@@ -1,5 +1,6 @@
 package org.mons.quizproject.service;
 
+import jakarta.persistence.EntityManager;
 import org.mons.quizproject.DAO.GameDaoImp;
 import org.mons.quizproject.DAO.UserDaoOrmImpl;
 import org.mons.quizproject.DTO.GameDTO;
@@ -17,8 +18,10 @@ public class GameService {
 
     }
 */
+
     public void addGame(GameDTO gameDTO) {
-        User user = userDao.getUser((int)gameDTO.getUser_id());
+
+        User user = userDao.getUser(1);
         Game game = new Game(user, gameDTO.getGameScore());
 
         gameDao.addGame(game);

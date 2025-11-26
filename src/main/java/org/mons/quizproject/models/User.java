@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.mons.quizproject.DTO.UserDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,8 +26,8 @@ public class User {
     private String lastName;
     @Column(name="password")
     private String password;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
-    private List<Game> gamesPlayed;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Game> gamesPlayed= new ArrayList<>();
 
     public User(String username,String firstName,String lastName, String hashedPassword){
         this.username=username;

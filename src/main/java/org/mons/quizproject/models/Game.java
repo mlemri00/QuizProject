@@ -16,11 +16,11 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
     @Column(name = "game_score")
     private int gameScore;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
     public Game(User user, int gameScore){
         this.user=user;
         this.gameScore=gameScore;
