@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.mons.quizproject.DTO.UserDto;
+import org.mons.quizproject.service.QuizService;
 import org.mons.quizproject.service.UserServiceImp;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.Objects;
 @WebServlet(name="loginServlet", value= "/login")
 public class LoginServlet  extends HttpServlet {
     UserServiceImp service;
+    QuizService serviceQuiz = new QuizService();
 
 
     @Override
@@ -50,6 +52,7 @@ public class LoginServlet  extends HttpServlet {
                 session.setAttribute("id",user.getId());
                 session.setAttribute("correctAnswers",0);
                 session.setAttribute("deadline", deadline);
+                session.setAttribute("question", serviceQuiz.getQuestionDTO((int)request.getSession(false).getAttribute("correctAnswers")));
                 response.sendRedirect("play");
 
             }

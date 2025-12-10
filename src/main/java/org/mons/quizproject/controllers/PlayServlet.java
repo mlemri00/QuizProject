@@ -17,7 +17,7 @@ import java.io.IOException;
 @WebServlet(name="play-servlet", value="/play")
 public class PlayServlet extends HttpServlet {
 
-    private QuizService service = new QuizService();
+    private static QuizService service = new QuizService();
 
 
 
@@ -25,8 +25,8 @@ public class PlayServlet extends HttpServlet {
         if((long)req.getSession().getAttribute("deadline")<System.currentTimeMillis()) {
             resp.sendRedirect(req.getContextPath() + "/ranking");
         }else {
-            QuestionDTO questionDTO = service.getQuestionDTO((int)req.getSession(false).getAttribute("correctAnswers"));
-            req.getSession().setAttribute("questionDTO", questionDTO);
+            QuestionDTO questionDTO = (QuestionDTO) req.getSession().getAttribute("question");
+            req.getSession().setAttribute("question", questionDTO);
             req.setAttribute("category", questionDTO.getCategory());
             req.setAttribute("answers", questionDTO.getPossibleAnswers());
             req.setAttribute("question", questionDTO.getQuestion());
@@ -35,13 +35,14 @@ public class PlayServlet extends HttpServlet {
 
 
             req.getRequestDispatcher("game.jsp").forward(req, resp);
+            req.getRequestDispatcher("game.jsp");
         }
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String resposta =  req.getParameter("ans");
-        QuestionDTO questionDTO = (QuestionDTO) session.getAttribute("questionDTO");
+        QuestionDTO questionDTO = (QuestionDTO) session.getAttribute("question");
         if(questionDTO == null){
             System.out.println("Question DTO is null");
 
@@ -51,6 +52,8 @@ public class PlayServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath()+"/ranking");
 
         } else {
+            QuestionDTO question = service.getQuestionDTO((int)req.getSession(false).getAttribute("correctAnswers"));
+            req.getSession().setAttribute("question", question);
             if (service.validarRespuesta(questionDTO, resposta)) {
                 long deadline = (long) session.getAttribute("deadline");
                 deadline = deadline + (10 * 1000);
@@ -75,6 +78,20 @@ public class PlayServlet extends HttpServlet {
 
 
 
+
+    }
+
+    public static void setQuestion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        QuestionDTO questionDTO = service.getQuestionDTO((int)req.getSession(false).getAttribute("correctAnswers"));
+        req.getSession().setAttribute("questionDTO", questionDTO);
+        req.setAttribute("category", questionDTO.getCategory());
+        req.setAttribute("answers", questionDTO.getPossibleAnswers());
+        req.setAttribute("question", questionDTO.getQuestion());
+        req.setAttribute("difficulty", questionDTO.getDifficulty());
+        req.setAttribute("time", ((long) req.getSession().getAttribute("deadline")) - System.currentTimeMillis());
+
+
+        req.getRequestDispatcher("game.jsp").forward(req, resp);
 
     }
 }
